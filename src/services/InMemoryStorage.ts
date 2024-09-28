@@ -1,17 +1,17 @@
-import { Product } from '../Entities/Product';
+import { Productable } from '../interfaces/Productable';
 
-class InMemoryStorage implements Storable<Product> {
-    private items: Product[] = [];
+export class InMemoryStorage implements Storable<Productable> {
+    private items: Productable[] = [];
     
-    set(item: Product): void {
+    set(item: Productable): void {
         this.items.push(item);
     }
 
-    get(name: string): Product | undefined {
+    get(name: string): Productable | undefined {
         return this.items.find(item => item.name === name);
     }
 
-    total(): Product[] {
+    total(): Productable[] {
         return this.items;
     }
 
@@ -20,7 +20,7 @@ class InMemoryStorage implements Storable<Product> {
         // this.items.splice(0, items.length);
     }
 
-    remove(item: Product): void {
+    remove(item: Productable): void {
         this.items.filter(i => i !== item);
     }
 }

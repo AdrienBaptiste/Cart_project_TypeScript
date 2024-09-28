@@ -1,4 +1,5 @@
-export interface Product {
-    name: string;
-    price: number;
+import { Productable } from "../interfaces/Productable";
+
+export class Product implements Productable {
+    
 }
