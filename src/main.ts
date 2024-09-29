@@ -21,6 +21,3 @@ console.log("Prix total du panier :", cart.getTotalPrice());
 cart.resetCart();
 cart.addProduct(croissant);
 console.log("Prix total du panier :", cart.getTotalPrice());
-
-console.log("bonjour")
-console.log("salut")
