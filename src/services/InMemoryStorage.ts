@@ -1,18 +1,19 @@
-import { Product } from '../Entities/Product';
+import { Storable } from '../interfaces/Storable';
+import { Productable } from '../interfaces/Productable';
 
-class InMemoryStorage implements Storable<Product> {
-    private items: Product[] = [];
+export class InMemoryStorage implements Storable<Productable> {
+    private items: Productable[] = [];
     
-    set(item: Product): void {
+    set(item: Productable): void {
         this.items.push(item);
     }
 
-    get(name: string): Product | undefined {
+    get(name: string): Productable | undefined {
         return this.items.find(item => item.name === name);
     }
-
-    total(): Product[] {
-        return this.items;
+    
+    total(): number {
+        return this.items.reduce((sum, product) => sum + product.price, 0);
     }
 
     reset(): void {
@@ -20,7 +21,10 @@ class InMemoryStorage implements Storable<Product> {
         // this.items.splice(0, items.length);
     }
 
-    remove(item: Product): void {
-        this.items.filter(i => i !== item);
+    remove(item: Productable): void {
+        const index = this.items.indexOf(item);
+        if (index !== -1) {
+            this.items.splice(index, 1);
+        }
     }
 }
