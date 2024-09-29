@@ -2,6 +2,7 @@ import { Cart } from './services/Cart';
 import { InMemoryStorage } from './services/InMemoryStorage';
 import { Product } from './Entities/Product';
 
+
 const stockage = new InMemoryStorage();
 
 const cart = new Cart(stockage);
