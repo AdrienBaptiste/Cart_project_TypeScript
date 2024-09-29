@@ -1,7 +1,10 @@
 export interface Storable<T> {
     set: (item: T) => void;
-    get: (name: string) => T | undefined;
     total: () => number;
     reset: () => void 
     remove: (item: T) => void;
 }
+
+/* On créé l'interface storable qui va définir si le produit qui 
+    est donné peut être stocké. 
+*/
