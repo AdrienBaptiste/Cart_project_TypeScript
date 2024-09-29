@@ -1,3 +1,4 @@
+import { Storable } from '../interfaces/Storable';
 import { Productable } from '../interfaces/Productable';
 
 export class InMemoryStorage implements Storable<Productable> {
@@ -10,9 +11,9 @@ export class InMemoryStorage implements Storable<Productable> {
     get(name: string): Productable | undefined {
         return this.items.find(item => item.name === name);
     }
-
-    total(): Productable[] {
-        return this.items;
+    
+    total(): number {
+        return this.items.reduce((sum, product) => sum + product.price, 0);
     }
 
     reset(): void {
@@ -21,6 +22,9 @@ export class InMemoryStorage implements Storable<Productable> {
     }
 
     remove(item: Productable): void {
-        this.items.filter(i => i !== item);
+        const index = this.items.indexOf(item);
+        if (index !== -1) {
+            this.items.splice(index, 1);
+        }
     }
 }

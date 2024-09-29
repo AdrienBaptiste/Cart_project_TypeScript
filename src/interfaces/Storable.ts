@@ -1,7 +1,7 @@
-interface Storable<T> {
+export interface Storable<T> {
     set: (item: T) => void;
     get: (name: string) => T | undefined;
-    total: () => T[];
+    total: () => number;
     reset: () => void 
     remove: (item: T) => void;
 }
